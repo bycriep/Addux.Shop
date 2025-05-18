@@ -6,9 +6,9 @@ const multer = require('multer');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-const PRODUCTS_PATH = path.join(__dirname, 'js', 'data', 'products.json');
-const COUPONS_PATH = path.join(__dirname, 'js', 'data', 'coupons.json');
-const EVENTS_PATH = path.join(__dirname, 'js', 'data', 'events.json');
+const PRODUCTS_PATH = path.join(__dirname, 'JS', 'data', 'products.json');
+const COUPONS_PATH = path.join(__dirname, 'JS', 'data', 'coupons.json');
+const EVENTS_PATH = path.join(__dirname, 'JS', 'data', 'events.json');
 
 // Crear carpeta IMAGES si no existe
 const imagesDir = path.join(__dirname, 'IMAGES');
