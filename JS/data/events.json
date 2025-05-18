@@ -1,0 +1,41 @@
+[
+  {
+    "id": 1,
+    "name": "Oferta Especial Prime Video",
+    "description": "Descuento del 20% en Prime Video por tiempo limitado.",
+    "image": "IMAGES/PrimeVideo-Logo-Header.webp",
+    "date": "2025-05-20T23:59:59",
+    "category": "oferta",
+    "price": "5.00 USD",
+    "stock": "ilimitado",
+    "isSoldOut": false,
+    "countdownInterval": 76,
+    "isEditing": false
+  },
+  {
+    "id": 2,
+    "name": "Maratón de Cursos",
+    "description": "Accede a todos nuestros cursos con un 50% de descuento.",
+    "image": "IMAGES/streaming.jpg",
+    "date": "2025-06-15T12:00:00",
+    "category": "oferta",
+    "price": "25.00 USD",
+    "stock": "ilimitado",
+    "isSoldOut": false,
+    "countdownInterval": 77,
+    "isEditing": false
+  },
+  {
+    "id": 14,
+    "name": "El poto de adux",
+    "description": "El poto de adux gratis",
+    "image": "IMAGES/1747439387966-926203.png",
+    "date": "2025-05-17T23:59:59",
+    "category": "oferta",
+    "price": "0.00 USD",
+    "stock": "ilimitado",
+    "isSoldOut": false,
+    "isEditing": false,
+    "countdownInterval": 78
+  }
+]

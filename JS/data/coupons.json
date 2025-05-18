@@ -1,0 +1,16 @@
+[
+  {
+    "id": 2,
+    "code": "el poto de addux",
+    "type": "especifico",
+    "item": "el poto de adux",
+    "discountPEN": "10.00"
+  },
+  {
+    "id": 3,
+    "code": "Links Deezer",
+    "type": "especifico",
+    "item": "Links deezer",
+    "discountPEN": "15.00"
+  }
+]

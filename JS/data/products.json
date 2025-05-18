@@ -1,0 +1,188 @@
+[
+  {
+    "id": 1,
+    "name": "Links prime a dominio",
+    "category": "productos",
+    "stock": "30",
+    "command": "/prime",
+    "details": "",
+    "media": {
+      "type": "image",
+      "src": "IMAGES/PrimeVideo-Logo-Header.webp"
+    },
+    "price": "10.00 USD",
+    "isSoldOut": false
+  },
+  {
+    "id": 2,
+    "name": "LIGA 1 MAX",
+    "category": "productos",
+    "stock": "20",
+    "command": "/liga1",
+    "details": "",
+    "media": {
+      "type": "image",
+      "src": "IMAGES/liga_1.png"
+    },
+    "price": "15.00 USD",
+    "isSoldOut": false
+  },
+  {
+    "id": 3,
+    "name": "Hits cablego",
+    "category": "productos",
+    "stock": "50",
+    "command": "/cablego",
+    "details": "",
+    "media": {
+      "type": "image",
+      "src": "IMAGES/cablego.png"
+    },
+    "price": "8.00 USD",
+    "isSoldOut": false
+  },
+  {
+    "id": 4,
+    "name": "Links deezer",
+    "category": "productos",
+    "stock": "300",
+    "command": "/dez",
+    "details": "",
+    "media": {
+      "type": "image",
+      "src": "IMAGES/Deezer1.jpg"
+    },
+    "price": "12",
+    "isSoldOut": false,
+    "isEditing": false
+  },
+  {
+    "id": 5,
+    "name": "Links vix",
+    "category": "productos",
+    "stock": "ilimitado",
+    "command": "/vix",
+    "details": "",
+    "media": {
+      "type": "image",
+      "src": "IMAGES/VixPremium.jpg"
+    },
+    "price": "5.00 USD",
+    "isSoldOut": false
+  },
+  {
+    "id": 6,
+    "name": "Crunchyroll a dominio",
+    "category": "productos",
+    "stock": "30",
+    "command": "/crunchy",
+    "details": "",
+    "media": {
+      "type": "image",
+      "src": "IMAGES/crunchyroll.jpg"
+    },
+    "price": "20.00 USD",
+    "isSoldOut": false
+  },
+  {
+    "id": 7,
+    "name": "ChatGPT",
+    "category": "productos",
+    "stock": "",
+    "command": "/gpt",
+    "details": "",
+    "media": {
+      "type": "image",
+      "src": "IMAGES/chatgpt.jpg"
+    },
+    "price": "25.00 USD",
+    "isSoldOut": false
+  },
+  {
+    "id": 8,
+    "name": "Titular de teléfono",
+    "category": "productos",
+    "stock": "",
+    "command": "/fono",
+    "details": "",
+    "media": {
+      "type": "image",
+      "src": "IMAGES/streaming.jpg"
+    },
+    "price": "3.00 USD",
+    "isSoldOut": false
+  },
+  {
+    "id": 9,
+    "name": "Bot busca datos personales",
+    "category": "productos",
+    "stock": "",
+    "command": "/dox",
+    "details": "t.me/caushadatabot",
+    "media": {
+      "type": "image",
+      "src": "IMAGES/doxing.jpg"
+    },
+    "price": "30.00 USD",
+    "isSoldOut": false
+  },
+  {
+    "id": 10,
+    "name": "Curso Cracking",
+    "category": "cursos",
+    "stock": "",
+    "command": "/Cracking",
+    "details": "Bot soporte\nApartado de vendedores certificados\nVideos tutoriales\nConfigs de cortesía",
+    "media": {
+      "type": "video",
+      "src": "VIDEOS/curso.mp4"
+    },
+    "price": "50.00 USD",
+    "isSoldOut": false
+  },
+  {
+    "id": 11,
+    "name": "Canva",
+    "category": "productos",
+    "stock": "ilimitado",
+    "command": "/canva",
+    "details": "",
+    "media": {
+      "type": "image",
+      "src": "IMAGES/1747433581773-168541.jpg"
+    },
+    "price": "94.96",
+    "isSoldOut": false,
+    "isEditing": false
+  },
+  {
+    "id": 12,
+    "name": "Links Disney",
+    "category": "productos",
+    "stock": "ilimitado",
+    "command": "/disney",
+    "details": "",
+    "media": {
+      "type": "image",
+      "src": "https://upload.wikimedia.org/wikipedia/commons/3/3e/Disney%2B_logo.svg"
+    },
+    "price": "10",
+    "isSoldOut": false,
+    "isEditing": false
+  },
+  {
+    "id": 13,
+    "name": "el poto de adux",
+    "category": "productos",
+    "stock": "ilimitado",
+    "command": "/elcochino",
+    "details": "",
+    "media": {
+      "type": "image",
+      "src": "IMAGES/1747433495902-540965.png"
+    },
+    "price": "10",
+    "isSoldOut": false,
+    "isEditing": false
+  }
+]

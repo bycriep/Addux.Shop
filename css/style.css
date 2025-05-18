@@ -1,0 +1,712 @@
+/* Estilos Base - Inspiración Matrix & Sword Art Online */
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #000000; /* Negro profundo */
+    color: #FFFFFF; /* Blanco para texto principal */
+    font-family: 'Roboto Mono', 'Courier New', Courier, monospace; /* Fuente monoespaciada moderna */
+    overflow-x: hidden;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+canvas#matrix {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    opacity: 0.1; /* Reducir opacidad del efecto matrix de fondo */
+    filter: blur(0.5px);
+}
+
+.header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: linear-gradient(to right, #0a0a0a, #101010); /* Más oscuro */
+    padding: 10px 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 100;
+    box-shadow: 0 0 15px #00FF00;
+}
+
+.site-title {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 2em;
+    font-weight: bold;
+    color: #00FF00;
+    text-shadow: 0 0 5px #00FF00, 0 0 10px #39FF14;
+}
+
+.tabs {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    flex-grow: 1;
+    margin: 10px 0;
+}
+
+.tab {
+    background: linear-gradient(to right, #004444, #080808); /* Más oscuro */
+    color: #00FF00; /* Texto verde */
+    border: 1px solid #00FF00;
+    padding: 8px 15px;
+    cursor: pointer;
+    transition: background 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: 1em;
+    text-shadow: 0 0 2px #000;
+    font-family: 'Share Tech Mono', monospace;
+}
+
+.tab:hover,
+.tab.active {
+    background: linear-gradient(to right, #00FF00, #00AA00); /* Verde más brillante */
+    color: #000000; /* Texto negro */
+    box-shadow: 0 0 10px #00FF00, 0 0 15px #39FF14;
+    border-color: #00FF00;
+}
+
+.admin-access {
+    margin-right: 20px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.admin-access img#admin-icon {
+    width: 40px;
+    height: 40px;
+    border: 1px solid #00FF00;
+    border-radius: 50%;
+    transition: transform 0.3s, box-shadow 0.3s;
+    box-shadow: 0 0 8px #00FF00;
+    object-fit: cover; /* Asegurar que el logo se vea bien */
+}
+
+.admin-access img#admin-icon:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 12px #00FF00, 0 0 18px #39FF14;
+}
+
+.cart-btn {
+    background: #00FF00;
+    color: #000000;
+    border: none;
+    padding: 8px 12px;
+    cursor: pointer;
+    border-radius: 5px;
+    box-shadow: 0 0 5px #00FF00;
+    font-size: 1em;
+    font-family: 'Share Tech Mono', monospace;
+}
+
+.cart-btn:hover {
+    background: #39FF14;
+    box-shadow: 0 0 10px #00FF00, 0 0 15px #39FF14;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 10, 0, 0.9); /* Más oscuro y verdoso */
+    z-index: 1000; /* Asegurar que esté al frente */
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-content {
+    background-color: #050505; /* Casi negro */
+    border: 1px solid #00FF00;
+    padding: 25px;
+    text-align: center;
+    box-shadow: 0 0 20px #00FF00, 0 0 30px #00FF00;
+    border-radius: 8px;
+    color: #FFFFFF;
+    width: 90%;
+    max-width: 500px; /* Ajustar para login */
+}
+
+.cart-modal-content {
+    max-width: 700px;
+}
+
+.cart-modal-content h3 {
+    margin-bottom: 20px;
+    color: #00FF00;
+    font-family: 'Orbitron', sans-serif;
+}
+
+#cart-items-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+#cart-items-table th, #cart-items-table td {
+    border: 1px solid #008800; /* Verde más oscuro para bordes internos */
+    padding: 10px;
+    text-align: left;
+    color: #FFFFFF;
+    font-size: 0.95em;
+}
+
+#cart-items-table th {
+    background-color: #002200; /* Fondo verde muy oscuro */
+    color: #00FF00;
+    font-family: 'Share Tech Mono', monospace;
+}
+
+#cart-items {
+    max-height: 300px;
+    overflow-y: auto;
+    /* overflow-x: auto; */ /* Handled by new wrapper */
+    /* margin-bottom: 20px; */ /* Moved to new wrapper */
+    display: block; /* Helps tbody with overflow and height */
+}
+
+#cart-totals p {
+    color: #FFFFFF;
+    font-size: 1.1em;
+}
+
+#cart-totals .total #cart-total {
+    font-size: 1.3em;
+    font-weight: bold;
+    color: #00FF00;
+    margin: 10px 0;
+}
+
+.cart-buttons {
+    display: flex;
+    justify-content: space-around;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.modal-content button, .product-actions button, .event-buttons button, .add-new-btn, .logout-btn, #apply-coupon-btn {
+    background: #00FF00;
+    color: #000000;
+    border: 1px solid #00FF00;
+    padding: 10px 15px;
+    cursor: pointer;
+    border-radius: 4px;
+    box-shadow: 0 0 5px #00FF00;
+    font-family: 'Share Tech Mono', monospace;
+    font-weight: bold;
+    transition: background 0.3s ease, box-shadow 0.3s ease, color 0.3s ease;
+    font-size: 0.9em;
+}
+
+.modal-content button:hover, .product-actions button:hover, .event-buttons button:hover, .add-new-btn:hover, .logout-btn:hover, #apply-coupon-btn:hover {
+    background: #00AA00; /* Verde más oscuro al hover */
+    box-shadow: 0 0 10px #00FF00, 0 0 15px #39FF14;
+    color: #FFFFFF;
+}
+
+.clear-cart-btn {
+    background: #AA0000; /* Rojo oscuro */
+    color: #FFFFFF;
+    border-color: #AA0000;
+}
+
+.clear-cart-btn:hover {
+    background: #FF0000; /* Rojo brillante */
+    box-shadow: 0 0 10px #FF0000;
+    color: #FFFFFF;
+}
+
+.modal-content button[type="button"].cancel-btn {
+    background: #555555; /* Gris oscuro */
+    color: #FFFFFF;
+    border-color: #555555;
+}
+
+.modal-content button[type="button"].cancel-btn:hover {
+    background: #777777; /* Gris más claro */
+    box-shadow: 0 0 10px #777777;
+}
+
+.modal-content label {
+    font-weight: bold;
+    color: #00FF00;
+}
+
+.modal-content input[type="password"], .modal-content input[type="text"], #coupon-input, .product-actions input[type="number"] {
+    background-color: #0a0a0a; /* Fondo negro para inputs */
+    color: #00FF00;
+    border: 1px solid #00FF00;
+    padding: 8px;
+    margin: 8px 0;
+    width: calc(100% - 20px);
+    border-radius: 4px;
+    font-family: 'Roboto Mono', monospace;
+}
+
+#login-error {
+    color: #FF4444;
+    display: none;
+}
+
+main {
+    margin-top: 80px; /* Ajustar según altura del header */
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px 0; /* Añadir padding vertical */
+}
+
+.tab-content {
+    display: none;
+    width: 90%;
+    max-width: 1200px; /* Reducir max-width para mejor estética */
+    padding: 20px;
+    border: 1px solid #00FF00;
+    box-shadow: 0 0 10px #00FF00, 0 0 20px rgba(0, 255, 0, 0.3);
+    background-color: rgba(0, 0, 0, 0.85); /* Fondo negro semitransparente */
+    color: #FFFFFF;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+    border-radius: 8px;
+    margin-bottom: 30px;
+}
+
+.tab-content.active {
+    display: block;
+    opacity: 1;
+}
+
+h2 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 2.2em;
+    margin-bottom: 0.8em;
+    text-align: center;
+    color: #00FF00;
+    text-shadow: 0 0 5px #00FF00, 0 0 10px #39FF14;
+}
+
+h3 {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 1.8em;
+    color: #00FF00; /* Verde para H3 también, para consistencia */
+    margin-bottom: 15px;
+    text-shadow: 0 0 3px #00FF00;
+}
+
+h4 {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 1.4em;
+    color: #00FF00;
+    margin: 15px 0 10px 0;
+    border-bottom: 1px solid #008800; /* Verde más oscuro */
+    padding-bottom: 5px;
+}
+
+p {
+    font-size: 1em;
+    line-height: 1.6;
+    margin: 0.5em 0;
+    color: #BBBBBB; /* Gris más claro */
+}
+
+/* Estilos para lista de productos y eventos */
+.product-list, .event-list {
+    display: grid;
+    /* Ajuste para el diseño de referencia: 3 columnas en escritorio */
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); 
+    gap: 20px;
+    width: 100%;
+}
+
+/* Estilos de tarjeta de producto (rediseño) */
+.product, .event {
+    background-color: #080808; /* Fondo muy oscuro, casi negro */
+    border: 1px solid #00FF00; /* Borde verde neón */
+    padding: 15px;
+    box-shadow: 0 0 8px rgba(0, 255, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Para empujar el botón hacia abajo */
+    border-radius: 6px;
+    text-align: center; /* Centrar contenido de la tarjeta */
+    transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.3s ease;
+    min-height: auto; /* Dejar que el contenido defina la altura */
+    position: relative; /* Para posicionar elementos hijos absolutamente */
+}
+
+.product:hover, .event:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 0 15px #00FF00, 0 0 25px rgba(0, 255, 0, 0.7);
+}
+
+.product.sold-out {
+    opacity: 0.5; /* Opacidad para el producto agotado */
+}
+
+.sold-out-badge {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: red;
+    color: white;
+    padding: 5px 10px;
+    font-size: 0.9em;
+    font-weight: bold;
+    border-radius: 3px;
+    z-index: 10; /* Para que esté encima de otros elementos de la tarjeta */
+}
+
+.product-image-container {
+    width: 100%;
+    height: 120px; /* Altura fija para la imagen, ajustar según necesidad */
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden; /* Para controlar el tamaño de la imagen */
+    background-color: #000000; /* Fondo negro para el contenedor de imagen */
+    border-radius: 4px; /* Bordes suaves para el contenedor de imagen */
+}
+
+.product-image {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain; /* Escalar imagen manteniendo proporciones */
+}
+
+.product-info .name {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #00FF00; /* Nombre del producto en verde */
+    margin: 10px 0 5px 0;
+    font-family: 'Share Tech Mono', monospace;
+}
+
+.product-info .stock, .product-info .command, .product-info .price {
+    font-size: 0.85em;
+    color: #A0A0A0; /* Gris para detalles */
+    margin: 3px 0;
+}
+
+.product-info .price {
+    color: #00FF00; /* Precio en verde */
+    font-weight: bold;
+    font-size: 1em;
+    margin-top: 8px;
+}
+
+.product-actions {
+    margin-top: 15px;
+    display: flex;
+    flex-direction: column; /* Apilar input y botón */
+    align-items: center;
+    gap: 8px;
+}
+
+.product-actions label {
+    font-size: 0.8em;
+    color: #00FF00;
+}
+
+.product-actions input[type="number"] {
+    width: 60px; /* Ancho más pequeño para cantidad */
+    padding: 6px;
+    text-align: center;
+    margin-bottom: 5px;
+}
+
+.product-actions button {
+    width: 100%; /* Botón ocupa todo el ancho disponible */
+    padding: 8px 10px;
+    font-size: 0.9em;
+}
+
+/* Estilos para elementos de administrador (inicialmente ocultos) */
+.admin-only {
+    display: none;
+}
+
+/* Estilos para notificaciones */
+#notification {
+    position: fixed;
+    top: 80px;
+    right: 20px;
+    background: linear-gradient(to right, #00FF00, #39FF14);
+    color: #000000;
+    padding: 15px 25px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px #00FF00, 0 0 15px #39FF14;
+    z-index: 1000;
+    display: none;
+    font-weight: bold;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 1.1em;
+}
+
+/* Estilos para la sección de comunidad */
+.community-links-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+    margin: 20px 0;
+}
+
+.platform-section {
+    background-color: rgba(10, 10, 10, 0.85);
+    border: 1px solid #00FF00;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 0 8px #00FF00;
+}
+
+.community-link {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    background: linear-gradient(to right, #002222, #080808);
+    border: 1px solid #00FF00;
+    padding: 15px;
+    box-shadow: 0 0 8px #00FF00;
+    border-radius: 8px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    width: auto;
+    justify-content: space-between;
+}
+
+.community-link:hover {
+    transform: scale(1.03);
+    box-shadow: 0 0 15px #00FF00, 0 0 20px #39FF14;
+}
+
+.community-link img, .community-link video {
+    width: 35px;
+    height: 35px;
+    object-fit: contain;
+    border-radius: 4px;
+}
+
+.community-link a {
+    color: #00FF00;
+    text-decoration: none;
+    font-size: 1.1em;
+    font-family: 'Share Tech Mono', monospace;
+}
+
+.community-link a:hover {
+    text-decoration: underline;
+    color: #39FF14;
+}
+
+.personal-contact .contact-number {
+    font-size: 1.5em;
+    color: #00FF00;
+    font-weight: bold;
+    margin: 15px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+}
+
+.personal-contact .contact-number a {
+    color: #00FF00;
+    text-decoration: none;
+}
+
+.personal-contact .contact-number a:hover {
+    text-decoration: underline;
+    color: #39FF14;
+}
+
+.contact-logo {
+    width: 40px;
+    height: 40px;
+    vertical-align: middle;
+    margin-right: 10px;
+    border: 1px solid #00FF00;
+    border-radius: 50%;
+    box-shadow: 0 0 5px #00FF00;
+}
+
+/* Fuentes de Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Roboto+Mono:wght@400;700&family=Share+Tech+Mono&display=swap');
+
+/* Media Queries para Responsividad */
+
+/* Tablets y móviles grandes (hasta 768px) */
+@media (max-width: 768px) {
+    .site-title {
+        font-size: 1.5em;
+    }
+    .tabs {
+        justify-content: flex-start;
+        gap: 5px;
+    }
+    .tab {
+        padding: 6px 10px;
+        font-size: 0.9em;
+    }
+    .header {
+        padding: 10px 15px;
+    }
+    main {
+        margin-top: 120px; /* Ajustado para header más alto en móvil */
+        width: 95%;
+    }
+    .tab-content {
+        padding: 15px;
+        width: 100%;
+    }
+    h2 {
+        font-size: 1.8em;
+    }
+    h3 {
+        font-size: 1.6em;
+    }
+    .product-list, .event-list {
+        grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); /* Tarjetas más pequeñas en tablet */
+        gap: 15px;
+    }
+    .product, .event {
+        padding: 12px;
+    }
+    .product-image-container {
+        height: 100px; /* Reducir altura de imagen en tablet */
+    }
+    .product-info .name {
+        font-size: 1em;
+    }
+    .product-info .stock, .product-info .command, .product-info .price {
+        font-size: 0.8em;
+    }
+    .product-info .price {
+        font-size: 0.9em;
+    }
+    .cart-modal-content {
+        width: 95%;
+        padding: 15px;
+    }
+    #cart-items-table th, #cart-items-table td {
+        padding: 8px;
+        font-size: 0.9em;
+    }
+    .personal-contact .contact-number {
+        font-size: 1.2em;
+        flex-direction: column;
+        gap: 5px;
+    }
+    .community-links-container {
+        grid-template-columns: 1fr;
+    }
+
+    /* Cart Responsiveness Adjustments for Tablets */
+    #cart-items-table th, #cart-items-table td {
+        white-space: nowrap; /* Prevents text wrapping if cells are too narrow, relies on horizontal scroll */
+    }
+    #cart-totals p {
+        font-size: 1em;
+        margin: 0.3em 0;
+    }
+    #cart-totals .total #cart-total {
+        font-size: 1.15em;
+        margin: 8px 0;
+    }
+}
+
+/* Móviles pequeños (hasta 480px) */
+@media (max-width: 480px) {
+    .site-title {
+        font-size: 1.2em;
+        text-align: center;
+        width: 100%;
+        margin-bottom: 10px;
+    }
+    .header {
+        flex-direction: column;
+        align-items: center;
+    }
+    .tabs {
+        order: 2;
+        width: 100%;
+        justify-content: center;
+        margin-top: 10px;
+        gap: 3px; /* Menos espacio entre pestañas */
+    }
+    .tab {
+        padding: 5px 8px;
+        font-size: 0.8em;
+    }
+    .admin-access {
+        order: 1;
+        margin-right: 0;
+        margin-bottom: 10px;
+    }
+    main {
+        margin-top: 190px; /* Ajustado para header más alto */
+        width: 98%; /* Casi todo el ancho */
+    }
+    .tab-content {
+        padding: 10px;
+    }
+    .product-list, .event-list {
+        grid-template-columns: 1fr; /* Una columna */
+        gap: 10px;
+    }
+    .product, .event {
+        padding: 10px;
+    }
+    .product-image-container {
+        height: 90px; /* Reducir más la altura de imagen */
+    }
+    h2 {
+        font-size: 1.5em;
+    }
+    h3 {
+        font-size: 1.3em;
+    }
+    .cart-btn {
+        font-size: 0.9em;
+        padding: 6px 10px;
+    }
+    .admin-access img#admin-icon {
+        width: 30px;
+        height: 30px;
+    }
+    .modal-content {
+        padding: 15px;
+        width: 95%;
+    }
+    .modal-content button, .product-actions button, .event-buttons button, .add-new-btn, .logout-btn, #apply-coupon-btn {
+        padding: 8px 12px;
+        font-size: 0.85em;
+    }
+    .cart-buttons {
+        flex-direction: column; /* Botones del carrito en columna */
+    }
+    #cart-items-table {
+        font-size: 0.85em; /* Reducir tamaño de fuente en tabla del carrito */
+    }
+    #cart-items-table th, #cart-items-table td {
+        padding: 6px;
+    }
+    .cart-table-wrapper {
+        width: 100%;
+        overflow-x: auto; /* Permitir scroll horizontal en la tabla del carrito */
+    }
+}
+

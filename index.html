@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Plataforma de streaming y entretenimiento con Prime Video, Deezer, Vix, y más">
+    <title>Addux Shop</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <canvas id="matrix"></canvas>
+    <div id="notification"></div>
+    <header class="header">
+        <div class="site-title">
+            <span id="main-title">Addux Shop</span>
+            <input type="text" id="main-title-input" class="admin-only title-input" style="display: none;" value="Addux Shop" aria-label="Editar título principal">
+        </div>
+        <div class="tabs">
+            <button class="tab active" data-tab="productos">Productos</button>
+            <button class="tab" data-tab="cursos">Cursos</button>
+            <button class="tab" data-tab="oferta">Oferta</button>
+            <button class="tab" data-tab="comunidad">Comunidad</button>
+            <button class="tab admin-only" data-tab="cupones">Cupones</button>
+        </div>
+        <div class="admin-access">
+            <button id="cart-button" class="cart-btn">🛒 <span id="cart-counter">0</span></button>
+            <img id="admin-icon" src="IMAGES/admin_logo.jpg" alt="Acceso de administrador">
+            <button id="logout-button" class="logout-btn admin-only">Cerrar Sesión</button>
+        </div>
+    </header>
+    <div id="admin-login-section" class="modal">
+        <div class="modal-content">
+            <h3>Iniciar Sesión - Admin</h3>
+            <form id="login-form-element">
+                <label for="secretKey">Clave Secreta:</label><br>
+                <input type="password" id="secretKey" name="secretKey" required><br>
+                <div class="login-buttons">
+                    <button type="submit">Iniciar Sesión</button>
+                    <button type="button">Cancelar</button>
+                </div>
+            </form>
+            <p id="login-error">Clave incorrecta</p>
+        </div>
+    </div>
+    <div id="cart-modal" class="modal">
+        <div class="modal-content cart-modal-content">
+            <h3>Carrito de Compras - Resumen de Compra</h3>
+            <div class="cart-table-wrapper">
+                <table id="cart-items-table">
+                    <thead>
+                        <tr>
+                            <th>Producto</th>
+                            <th>Categoría</th>
+                            <th>Cantidad</th>
+                            <th>Precio Unitario</th>
+                            <th>Subtotal</th>
+                        </tr>
+                    </thead>
+                    <tbody id="cart-items"></tbody>
+                </table>
+            </div>
+            <div>
+                <input type="text" id="coupon-input" placeholder="Ingresa el código del cupón">
+                <button id="apply-coupon-btn">Aplicar Cupón</button>
+            </div>
+            <div id="coupon-message"></div>
+            <div id="cart-totals">
+                <p>Subtotal de cursos: <span id="subtotal-cursos">0.00 USD (0.00 PEN)</span></p>
+                <p>Subtotal de productos: <span id="subtotal-productos">0.00 USD (0.00 PEN)</span></p>
+                <p>Total original: <span id="original-total">0.00 USD (0.00 PEN)</span></p>
+                <p class="discount">Descuento: <span id="discount">0.00 USD (0.00 PEN)</span></p>
+                <p class="discount" id="discount-items" style="display: none;">Descuento aplicado a: <span id="discount-items-list"></span></p>
+                <p class="total">Total final: <span id="cart-total">0.00 USD (0.00 PEN)</span></p>
+            </div>
+            <p class="instructions">
+                Instrucciones de compra: <br>
+                1) Toma una captura de pantalla de esta boleta.<br>
+                2) Haz clic en "Comprar" para proceder con el pedido.<br>
+                3) En WhatsApp, envía la captura de la boleta para referencia.
+            </p>
+            <div class="cart-buttons">
+                <button class="clear-cart-btn">Vaciar Carrito</button>
+                <button class="buy-all-btn">Comprar Todo</button>
+                <button class="cancel-btn">Cerrar</button>
+            </div>
+        </div>
+    </div>
+    <main>
+        <div id="productos" class="tab-content active">
+            <h2>
+                <span id="productos-title">Productos de Streaming</span>
+                <input type="text" id="productos-title-input" class="admin-only title-input" style="display: none;" value="Productos de Streaming" aria-label="Editar título de Productos">
+            </h2>
+            <p>
+                <span id="productos-subtitle">Explora nuestra selección de servicios de streaming como Prime Video, Deezer, Vix, y más.</span>
+                <input type="text" id="productos-subtitle-input" class="admin-only subtitle-input" style="display: none;" value="Explora nuestra selección de servicios de streaming como Prime Video, Deezer, Vix, y más." aria-label="Editar subtítulo de Productos">
+            </p>
+            <div class="product-categories product-list"></div>
+            <button class="add-new-btn admin-only">Añadir Producto</button>
+        </div>
+        <div id="cursos" class="tab-content">
+            <h2>
+                <span id="cursos-title">Cursos</span>
+                <input type="text" id="cursos-title-input" class="admin-only title-input" style="display: none;" value="Cursos" aria-label="Editar título de Cursos">
+            </h2>
+            <div class="product-categories product-list"></div>
+            <button class="add-new-btn admin-only">Añadir Curso</button>
+            <div class="course-message admin-only">
+                <p id="course-message-text"></p>
+                <div id="course-message-edit" style="display: none;">
+                    <textarea id="course-message-input"></textarea>
+                    <button class="save-btn">Guardar</button>
+                    <button class="cancel-btn">Cancelar</button>
+                </div>
+                <button class="edit-btn">Editar Mensaje</button>
+            </div>
+        </div>
+        <div id="oferta" class="tab-content">
+            <h2>
+                <span id="oferta-title">Oferta</span>
+                <input type="text" id="oferta-title-input" class="admin-only title-input" style="display: none;" value="Oferta" aria-label="Editar título de Oferta">
+            </h2>
+            <p>
+                <span id="oferta-subtitle">No te pierdas nuestras promociones especiales.</span>
+                <input type="text" id="oferta-subtitle-input" class="admin-only subtitle-input" style="display: none;" value="No te pierdas nuestras promociones especiales." aria-label="Editar subtítulo de Oferta">
+            </p>
+            <div class="event-list"></div>
+            <button class="add-new-btn admin-only">Añadir Oferta</button>
+        </div>
+        <div id="comunidad" class="tab-content">
+            <h2>
+                <span id="comunidad-title">Comunidad</span>
+                <input type="text" id="comunidad-title-input" class="admin-only title-input" style="display: none;" value="Comunidad" aria-label="Editar título de Comunidad">
+            </h2>
+            <div class="community-section">
+                <div class="community-links-section">
+                    <h3>Únete a nuestros grupos y canales</h3>
+                    <div class="community-links-container">
+                        <div class="platform-section">
+                            <h4>WhatsApp</h4>
+                            <div class="platform-subsection">
+                                <h5>Grupos y Canales</h5>
+                                <div id="whatsapp-channels" class="platform-links"></div>
+                            </div>
+                            <div class="platform-subsection">
+                                <h5>Bots</h5>
+                                <div id="whatsapp-bots" class="platform-links"></div>
+                            </div>
+                            <button id="add-whatsapp-channel-btn" class="add-new-btn admin-only">Añadir grupo/canal de WhatsApp</button>
+                            <button id="add-whatsapp-bot-btn" class="add-new-btn admin-only">Añadir bot de WhatsApp</button>
+                        </div>
+                        <div class="platform-section">
+                            <h4>Telegram</h4>
+                            <div class="platform-subsection">
+                                <h5>Canales</h5>
+                                <div id="telegram-channels" class="platform-links"></div>
+                            </div>
+                            <div class="platform-subsection">
+                                <h5>Bots</h5>
+                                <div id="telegram-bots" class="platform-links"></div>
+                            </div>
+                            <button id="add-telegram-channel-btn" class="add-new-btn admin-only">Añadir canal de Telegram</button>
+                            <button id="add-telegram-bot-btn" class="add-new-btn admin-only">Añadir bot de Telegram</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="community-contact-section">
+                    <h3>
+                        <span id="contactanos-title">Contáctanos</span>
+                        <input type="text" id="contactanos-title-input" class="admin-only title-input" style="display: none;" value="Contáctanos" aria-label="Editar título de Contáctanos">
+                    </h3>
+                    <div class="personal-contact">
+                        <p class="contact-number">
+                            <span class="contact-logo-container">
+                                <img src="IMAGES/logo_whatsap.png" alt="WhatsApp Logo" class="contact-logo" id="whatsapp-logo">
+                            </span>
+                            <span>WhatsApp: <a href="https://wa.me/51971541408" target="_blank">+51 971 541 408</a></span>
+                        </p>
+                        <p class="contact-number">
+                            <span class="contact-logo-container">
+                                <img src="IMAGES/logo_telegram.png" alt="Telegram Logo" class="contact-logo">
+                            </span>
+                            <span>Telegram: <a href="https://t.me/AdduxBot" target="_blank">@AdduxBot</a></span>
+                        </p>
+                    </div>
+                    <p class="instructions">
+                        <span id="contact-instructions">Para ingresar a la comunidad, envía un mensaje al número de WhatsApp con la palabra clave <strong>/grupo</strong> y para ver mi menú escribe <strong>/cmds</strong></span>
+                        <input type="text" id="contact-instructions-input" class="admin-only subtitle-input" style="display: none;" value="Para ingresar a la comunidad, envía un mensaje al número de WhatsApp con la palabra clave <strong>/grupo</strong> y para ver mi menú escribe <strong>/cmds</strong>" aria-label="Editar instrucciones de contacto">
+                    </p>
+                    <div id="contact-buttons" class="contact-buttons"></div>
+                    <button id="add-contact-button-btn" class="add-new-btn admin-only">Añadir Botón de Contacto</button>
+                </div>
+            </div>
+        </div>
+        <div id="cupones" class="tab-content">
+            <h2>
+                <span id="cupones-title">Gestión de Cupones</span>
+                <input type="text" id="cupones-title-input" class="admin-only title-input" style="display: none;" value="Gestión de Cupones" aria-label="Editar título de Cupones">
+            </h2>
+            <table id="coupons-table">
+                <thead>
+                    <tr>
+                        <th>Código</th>
+                        <th>Tipo</th>
+                        <th>Ítem Específico</th>
+                        <th>Descuento (PEN)</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody id="coupons-list"></tbody>
+            </table>
+            <button class="add-new-btn admin-only">Añadir Cupón</button>
+        </div>
+    </main>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/js-sha256/0.9.0/sha256.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+    <div id="add-coupon-modal" class="modal">
+        <div class="modal-content">
+            <h3>Añadir Nuevo Cupón</h3>
+            <form id="add-coupon-form">
+                <div>
+                    <label for="couponCode">Código:</label><br>
+                    <input type="text" id="couponCodeModal" name="couponCode" required><br>
+                </div>
+                <div>
+                    <label for="couponTypeModal">Tipo:</label><br>
+                    <select id="couponTypeModal" name="couponTypeModal" required>
+                        <option value="general">General (todos los productos)</option>
+                        <option value="especifico">Específico (un producto)</option>
+                    </select><br>
+                </div>
+                <div>
+                    <label for="couponItemModal">Ítem Específico (si tipo es específico):</label><br>
+                    <input type="text" id="couponItemModal" name="couponItemModal" placeholder="Nombre exacto del producto" disabled><br>
+                </div>
+                <div>
+                    <label for="couponDiscountPENModal">Descuento (PEN):</label><br>
+                    <input type="number" id="couponDiscountPENModal" name="couponDiscountPENModal" step="0.01" required><br>
+                </div>
+                <div class="login-buttons"> <!-- Usando la misma clase para botones de modal -->
+                    <button type="submit">Guardar Cupón</button>
+                    <button type="button" id="cancel-add-coupon-btn">Cancelar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script type="module" src="js/script.js"></script>
+    <script src="js/script.js"></script>
+
+</body>
+</html>
